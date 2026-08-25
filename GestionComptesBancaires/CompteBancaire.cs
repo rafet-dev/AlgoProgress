@@ -1,6 +1,6 @@
 namespace GestionComptesBancaires
 {
-    public class ComptesBancaires
+    public class CompteBancaire
     {
         private int _numeroCompte;
         private double _solde;
@@ -12,22 +12,48 @@ namespace GestionComptesBancaires
 
         public void Deposer(double montant)
         {
-            
-        }
 
+            Solde = Solde + montant;
+            Console.WriteLine("Le nouveau solde du compte est : " + Solde);
+            Console.WriteLine("Appuyer sur une touche pour revenir au menu principal");
+            Console.ReadKey();
+        }
         public void Retirer(double montant)
         {
-            
+            if (montant > Solde)
+            {
+                Console.WriteLine("Le montant à retirer est supérieur au solde du compte !");
+                Console.WriteLine("Appuyer sur une touche pour revenir au menu principal");
+                Console.ReadKey();
+                return;
+            }
+
+            Solde = Solde - montant;
+            Console.WriteLine("Le nouveau solde du compte est : " + Solde);
+            Console.WriteLine("Appuyer sur une touche pour revenir au menu principal");
+            Console.ReadKey();
         }
 
         public void AfficherCompte()
         {
-            
+            Console.WriteLine("===== Informations de votre compte Bancaire =====");
+            Console.WriteLine("\n");
+
+            Console.WriteLine("Nom du client : " + Client.NomClient);
+            Console.WriteLine("Prénom du client : " + Client.PrenomClient); 
+            Console.WriteLine("Numéro du compte : " + NumeroCompte);
+            Console.WriteLine("Solde du compte : " + Solde);
+            Console.WriteLine("\n");
+
+            Console.WriteLine("Appuyer sur une touche pour revenir au menu principal");
+            Console.ReadKey();
         }
 
-        public void ObtenirSolde()
+        public double ObtenirSolde()
         {
-            
+            Console.WriteLine("Appuyer sur une touche pour revenir au menu principal");
+            Console.ReadKey();  
+            return Solde;   
         }
     }
 }

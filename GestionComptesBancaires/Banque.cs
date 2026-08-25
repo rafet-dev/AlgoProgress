@@ -3,16 +3,17 @@ namespace GestionComptesBancaires
     public class Banque
     {
         private List<CompteBancaire> _listeComptes = new List<CompteBancaire>();
-
         public List<CompteBancaire> ListeComptes { get => _listeComptes; set => _listeComptes = value; }
 
         public void CreerCompte()
         {
             string soldeStr;
             string nbcompteStr;
+            double nouveauSolde;
+            int nouveauNumeroCompte;
             
-            Banque nouveau = new Banque();
-            ComptesBancaires nouveauCompte = new ComptesBancaires();
+            Client nouveau = new Client();
+            CompteBancaire nouveauCompte = new CompteBancaire();
 
             Console.WriteLine("===== Créer un compte Bancaire =====");
             Console.WriteLine("\n");
@@ -21,6 +22,8 @@ namespace GestionComptesBancaires
             nouveau.NomClient = Console.ReadLine();
             Console.WriteLine("Prénom du nouveau Client : ");
             nouveau.PrenomClient = Console.ReadLine();
+
+            nouveauCompte.Client = nouveau;
 
             Console.WriteLine("\n");
             Console.WriteLine("Caractéristique du nouveau compte crée : ");
@@ -34,18 +37,20 @@ namespace GestionComptesBancaires
                 soldeStr = Console.ReadLine();
             }
             
-            double nouveauSolde = double.Parse(soldeStr);
+            nouveauSolde = double.Parse(soldeStr);
             nouveauCompte.Solde = nouveauSolde;
 
             Console.WriteLine("Numero du compte : ");
             nbcompteStr = Console.ReadLine();
 
-            while(!int.TryParse(nbcompteStr, out int nouveauNumeroCompte))
+            while(!int.TryParse(nbcompteStr, out nouveauNumeroCompte))
             {
                 Console.WriteLine("Saisie invalide !");
                 Console.WriteLine("Numero du compte : ");
                 nbcompteStr = Console.ReadLine();
             }
+
+            nouveauNumeroCompte = int.Parse(nbcompteStr);
 
             for (int i = 0; i < ListeComptes.Count; i++)
             {
@@ -54,6 +59,7 @@ namespace GestionComptesBancaires
                     Console.WriteLine("Le numéro de compte existe déjà !");
                     Console.WriteLine("Veuillez saisir un autre numéro de compte : ");
                     nbcompteStr = Console.ReadLine();
+
                     while(!int.TryParse(nbcompteStr, out nouveauNumeroCompte))
                     {
                         Console.WriteLine("Saisie invalide !");
@@ -64,26 +70,22 @@ namespace GestionComptesBancaires
                 }
             }
 
-            double nouveauNumeroCompte = int.Parse(nbcompteStr);
-            nouveauCompte.nouveauNumeroCompte = nouveauNumeroCompte;
-
+            nouveauCompte.NumeroCompte = nouveauNumeroCompte;
             ListeComptes.Add(nouveauCompte);
         }
 
         public void AfficherCompte()
         {
             Console.Clear();
-            Console.WriteLine("===== Afficher les comptes Bancaires =====");
+            Console.WriteLine("===== Afficher l'ensemble des comptes clients =====");
+            Console.WriteLine("\n");
 
             for (int i = 0; i < ListeComptes.Count; i++)
             {
-                Console.WriteLine("\n");
-                Console.WriteLine("Compte n°" + (i + 1) + " : ");
-                ListeComptes[i].AfficherCompte();
+               ListeComptes[i].AfficherCompte();
+               Console.WriteLine("\n");   
             }
-
-            Console.WriteLine("\n");
-            Console.WriteLine("Nombre de comptes Bancaires : " + ListeComptes.Count);
+            Console.WriteLine("Nombre total de comptes : " + ListeComptes.Count);
             Console.WriteLine("Appuyer sur une touche pour revenir au menu principal");
             Console.ReadKey();
         }
@@ -101,3 +103,4 @@ namespace GestionComptesBancaires
         }
     }
 }
+
