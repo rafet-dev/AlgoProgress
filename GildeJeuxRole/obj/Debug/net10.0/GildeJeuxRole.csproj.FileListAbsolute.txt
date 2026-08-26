@@ -1,0 +1,5 @@
+C:\Users\cda12zito\Projets\ReviseAlgo\AlgoProgress\GildeJeuxRole\obj\Debug\net10.0\GildeJeuxRole.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\cda12zito\Projets\ReviseAlgo\AlgoProgress\GildeJeuxRole\obj\Debug\net10.0\GildeJeuxRole.AssemblyInfoInputs.cache
+C:\Users\cda12zito\Projets\ReviseAlgo\AlgoProgress\GildeJeuxRole\obj\Debug\net10.0\GildeJeuxRole.AssemblyInfo.cs
+C:\Users\cda12zito\Projets\ReviseAlgo\AlgoProgress\GildeJeuxRole\obj\Debug\net10.0\GildeJeuxRole.csproj.CoreCompileInputs.cache
+C:\Users\cda12zito\Projets\ReviseAlgo\AlgoProgress\GildeJeuxRole\obj\Debug\net10.0\GildeJeuxRole.sourcelink.json

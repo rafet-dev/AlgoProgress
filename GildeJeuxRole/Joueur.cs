@@ -12,7 +12,22 @@ namespace Guildes
 
         public void AfficherJoueur()
         {
-            
+            // on affiche la fiche Joueur d'un seul joueur
+
+            Console.Clear();
+            Console.WriteLine("===== Affichage d'une fiche joueur =====");
+            Console.WriteLine("\n");
+            Console.WriteLine("===== Fiche du joueur " + Nom + " =====");
+            Console.WriteLine();
+            Console.WriteLine("Niveau du joueur : " + Niveau);
+            Console.WriteLine("Inventaire du joueur : ");
+                
+            inventaireJoueur.AfficherInventaire();
+
+            Console.WriteLine("Appuyez sur une touche pour revenir au menu ...");
+            Console.ReadKey();
+
         }
+
     }
 }

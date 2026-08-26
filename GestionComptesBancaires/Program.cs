@@ -132,6 +132,7 @@ namespace GestionComptesBancaires
                         quitter = true;
                         Console.WriteLine("Merci d'avoir utilisé le programme. Au revoir !");
                         break;
+                        
                     default:
                         Console.WriteLine("Option invalide. Veuillez réessayer.");
                         break;
