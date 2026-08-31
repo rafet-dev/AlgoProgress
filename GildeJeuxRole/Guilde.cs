@@ -15,9 +15,18 @@ namespace Guildes
             Console.WriteLine("\n");
             Console.WriteLine("Nom du nouveau joueur : ");
             string nomNouveauJoueur = Console.ReadLine();
+            
+
+            while (RechercherJoueur(nomNouveauJoueur) != null)
+            {
+                Console.WriteLine("Ce joueur existe déjà !");
+                Console.WriteLine("Nom du nouveau joueur : ");
+                nomNouveauJoueur = Console.ReadLine();
+
+            }
 
             nouveauJoueur.Nom = nomNouveauJoueur;
-            nouveauJoueur.Niveau = 0;
+            nouveauJoueur.Niveau = 1;
                         
             ListeJoueurs.Add(nouveauJoueur);
 
@@ -42,6 +51,7 @@ namespace Guildes
 
             Console.WriteLine("Appuyez sur une touche pour revenir au menu ...");
             Console.ReadKey();
+            
         }
 
         public Joueur RechercherJoueur(string nom)

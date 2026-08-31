@@ -25,8 +25,7 @@ namespace Guildes
             inventaireJoueur.AfficherInventaire();
 
             Console.WriteLine("Appuyez sur une touche pour revenir au menu ...");
-            Console.ReadKey();
-
+           
         }
 
     }

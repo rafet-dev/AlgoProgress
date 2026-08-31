@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("GildeJeuxRole")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+735e616e8dc9a6f88e2b87ec167ab5b6c3156277")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+94b8dc7ff81ad2633a327b0a5cdfaee7671bb849")]
 [assembly: System.Reflection.AssemblyProductAttribute("GildeJeuxRole")]
 [assembly: System.Reflection.AssemblyTitleAttribute("GildeJeuxRole")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

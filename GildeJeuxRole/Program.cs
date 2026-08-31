@@ -2,17 +2,16 @@
 {
     public class Program
     {
-        Joueur joueur = new Joueur();
-        Inventaire inventaire = new Inventaire();
-        ObjetJeu objet = new ObjetJeu();
+
         Guilde guilde = new Guilde();
+        string nom;
         public void MenuGuilde()
         {
             Console.Clear();
             Console.WriteLine("===== Menu du Jeu de Guilde =====");
             Console.WriteLine("\n");
             Console.WriteLine("1 - Créer un joueur ");
-            Console.WriteLine("2 - Créer un objet ");
+            Console.WriteLine("2 - Ajouter un objet à un joueur ");
             Console.WriteLine("3 - Afficher tous les joueurs");
             Console.WriteLine("4 - Afficher la fiche d'un joueur");
             Console.WriteLine("5 - Afficher l'inventaire d'un joueur ");
@@ -47,34 +46,84 @@
                         break;
 
                     case 2: 
-                        inventaire.AjouterObjet();
+                        
+                        Console.Clear();
+                        Console.WriteLine("====== Ajout d'un objet à un joueur =====");
+                        Console.WriteLine("A quel joueur voulez-vous ajouter un objet ?");
+                        nom = Console.ReadLine();
+
+                        Joueur joueurTrouve = guilde.RechercherJoueur(nom);
+
+                        while (guilde.RechercherJoueur(nom) == null)
+                        {
+                            Console.WriteLine("Ce joueur n'existe pas !!!");
+                            Console.WriteLine("A quel joueur voulez-vous ajouter un objet ?");
+                            nom = Console.ReadLine();
+
+                            joueurTrouve = guilde.RechercherJoueur(nom);
+                        }
+
+                        joueurTrouve.InventaireJoueur.AjouterObjet();
                         break;
 
                     case 3: 
                         guilde.AfficherTousLesJoueurs();
+                        
                         break;
 
                     case 4:
-                        joueur.AfficherJoueur();
+                        Console.Clear();
+                        Console.WriteLine("====== Afficher la fiche d'un joueur =====");
+                        Console.WriteLine("Quel joueur voulez-vous afficher ?");
+                        nom = Console.ReadLine();
+
+                        joueurTrouve = guilde.RechercherJoueur(nom);
+
+                        while (guilde.RechercherJoueur(nom) == null)
+                        {
+                            Console.WriteLine("Ce joueur n'existe pas !!!");
+                            Console.WriteLine("A quel joueur voulez-vous ajouter un objet ?");
+                            nom = Console.ReadLine();
+
+                            joueurTrouve = guilde.RechercherJoueur(nom);
+                        }
+
+                        joueurTrouve.AfficherJoueur();
                         break;
 
                     case 5:
-                        inventaire.AfficherInventaire();
+                    Console.Clear();
+                        Console.WriteLine("====== Afficher l'inventaire d'un joueur =====");
+                        Console.WriteLine("Quel joueur voulez-vous afficher son inventaire ?");
+                        nom = Console.ReadLine();
+
+                        joueurTrouve = guilde.RechercherJoueur(nom);
+
+                        while (guilde.RechercherJoueur(nom) == null)
+                        {
+                            Console.WriteLine("Ce joueur n'existe pas !!!");
+                            Console.WriteLine("Quel joueur voulez-vous afficher son inventaire ?");
+                            nom = Console.ReadLine();
+
+                            joueurTrouve = guilde.RechercherJoueur(nom);
+                        }
+
+                        joueurTrouve.InventaireJoueur.AfficherInventaire();
                         break;
 
                     case 6:
-                        string nom;
+                        
                         Console.Clear();
                         Console.WriteLine("===== Rechercher un joueur =====");
                         Console.WriteLine("\n");
                         Console.WriteLine("Saisissez le nom que vous recherchez : ");
                         nom = Console.ReadLine();
 
-                        joueur = guilde.RechercherJoueur(nom);
+                        joueurTrouve = guilde.RechercherJoueur(nom);
 
-                        if (joueur != null)
+                        if (joueurTrouve != null)
                         {
-                            joueur.AfficherJoueur();
+                            joueurTrouve.AfficherJoueur();
                         }
                         else
                         {

@@ -46,28 +46,24 @@ namespace Guildes
             nouvelObjet.Poids = nouveauPoids;
             ListeObjets.Add(nouvelObjet);
 
-            Console.WriteLine("L'objet " + nouvelObjet.NomObjet + "a été crée.");
+            Console.WriteLine("L'objet " + nouvelObjet.NomObjet + " a été créé.");
             Console.WriteLine("Appuyez sur une touche pour revenir au menu ...");
             Console.ReadKey();
         }
 
         public void AfficherInventaire()
         {
-            Joueur joueurAInventorier;
-            Guilde guilde;
             // on affiche l'inventaire d'un seul joueur
-            Console.Clear();
             Console.WriteLine("===== Affichage de l'inventaire Joueur =====");
+            
             Console.WriteLine("\n");
-            Console.WriteLine("Saisissez le nom du joueur :");
-            string Nom = Console.ReadLine();
-
-            joueurAInventorier = guilde.RechercherJoueur(Nom);
-
-            if (joueurAInventorier != null)
+            if (ListeObjets.Count == 0)
             {
-                Console.WriteLine("Inventaire du joueur " + joueurAInventorier.Nom);  
-                Console.WriteLine("\n");
+                Console.WriteLine("Aucun objet dans l'inventaire !");
+            }
+
+            else
+            {
                 for (int i = 0; i < ListeObjets.Count; i++)
                 {
                     Console.WriteLine("Objet " + (i + 1) + " :");
@@ -77,6 +73,7 @@ namespace Guildes
                     Console.WriteLine("\n"); 
                 }
             }
+                        
             Console.WriteLine("Appuyez sur une touche pour revenir au menu ...");
             Console.ReadKey();
         }
@@ -84,30 +81,18 @@ namespace Guildes
         public void CalculerValeurTotale()
         {
             double valeurTotale = 0;
-            Guilde guilde;
-            Joueur ValeurTotale;
-
             // on calcule la valeur totale de l'inventaire d'un seul joueur
 
             Console.Clear();
             Console.WriteLine("===== Valeur totale d'un inventaire joueur =====");
             Console.WriteLine("\n");
 
-            Console.WriteLine("Saisissez le nom du joueur :");
-            string NomValeur = Console.ReadLine();
-
-            ValeurTotale = guilde.RechercherJoueur(NomValeur);
-
-            if (ValeurTotale != null)
+            for (int j = 0; j < ListeObjets.Count; j++)
             {
-                Console.WriteLine("Inventaire du joueur " + NomValeur);
-
-                    for (int j = 0; j < ListeObjets.Count; j++)
-                    {
-                        valeurTotale = valeurTotale + ListeObjets[j].Valeur;
-                    }
+                Console.WriteLine("Objet : " + ListeObjets[j].NomObjet + " => " + ListeObjets[j].Valeur);
+                valeurTotale = valeurTotale + ListeObjets[j].Valeur;
             }
-
+            
             Console.WriteLine("Valeur totale de l'inventaire du joueur : " + valeurTotale);
             Console.WriteLine("Appuyez sur une touche pour revenir au menu ...");
             Console.ReadKey();
