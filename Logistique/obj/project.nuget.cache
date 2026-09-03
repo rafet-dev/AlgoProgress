@@ -1,0 +1,12 @@
+{
+  "version": 2,
+  "dgSpecHash": "53AKHMWGXiM=",
+  "success": true,
+  "projectFilePath": "C:\\Users\\cda12zito\\Projets\\ReviseAlgo\\AlgoProgress\\Logistique\\Logistique.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\cda12zito\\.nuget\\packages\\microsoft.extensions.dependencyinjection.abstractions\\10.0.0\\microsoft.extensions.dependencyinjection.abstractions.10.0.0.nupkg.sha512",
+    "C:\\Users\\cda12zito\\.nuget\\packages\\microsoft.extensions.logging.abstractions\\10.0.0\\microsoft.extensions.logging.abstractions.10.0.0.nupkg.sha512",
+    "C:\\Users\\cda12zito\\.nuget\\packages\\npgsql\\10.0.3\\npgsql.10.0.3.nupkg.sha512"
+  ],
+  "logs": []
+}
