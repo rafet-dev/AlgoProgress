@@ -1,62 +1,100 @@
 ﻿using System.Collections.Generic;
 using Npgsql;
-// "je vais utiliser des outils qui viennent de la bibliothèque Npgsql" (celle qu'on a installée avec dotnet add package Npgsql)
+
 namespace Logistique
 {   
     public class Program
     {
-        
         public static void Main(string[] args)
         {
-            // connexion à la base de données 
-            // simple variable texte (string) qui contient toutes les informations nécessaires pour trouver et ouvrir la porte 
-            // de ta base de données :
+            string password = Environment.GetEnvironmentVariable("DB_PASSWORD");
+            string connectionString = $"Host=localhost;Port=5432;Database=Logistique;Username=postgres;Password={password}";
 
-            // Host=localhost → "la base est sur cet ordinateur" (ton PC)
-            // Port=5432 → "elle écoute sur cette porte-là précisément" (le port que tu avais vu dans docker ps)
-            // Database=Logistique → "je veux accéder à la base qui s'appelle Logistique"
-            // Username=postgres et Password=... → "voici mes identifiants pour prouver que j'ai le droit d'entrer"
-            string connectionString = "Host=localhost;Port=5432;Database=Logistique;UserName=postgres;Password=password";
+            ProduitRepository produitRepo = new ProduitRepository(connectionString);
+            CommandeRepository commandeRepo = new CommandeRepository(connectionString);
+            LigneCommandeRepository ligneRepo = new LigneCommandeRepository(connectionString);
 
-            /* new NpgsqlConnection(connectionString) crée un objet connexion en lui donnant l'adresse/les identifiants qu'on 
-            vient de préparer.
-            À ce stade, la connexion n'est pas encore ouverte, juste préparée.
-            Le mot-clé using (...) { ... } est un mécanisme spécial de C# qui dit : "utilise cette connexion seulement 
-            à l'intérieur de ces accolades,
-            et ferme-la automatiquement dès que tu sors de ce bloc — même si une erreur se produit en cours de route." 
-            C'est une sécurité très importante : une connexion à une base de données est une ressource "coûteuse" 
-            (comme laisser un robinet ouvert), donc on veut être sûr qu'elle se referme toujours proprement. */ 
-            using (var connexion = new NpgsqlConnection(connectionString))
+            bool continuer = true;
+
+            while (continuer)
             {
-                connexion.Open();
-                //C'est la ligne qui ouvre réellement la connexion — elle contacte PostgreSQL, vérifie que l'adresse 
-                // et les identifiants sont bons, et établit le lien. Si quelque chose est faux 
-                // (mauvais mot de passe, port fermé, base inexistante), c'est cette ligne qui provoquerait une erreur.
-                Console.WriteLine("Connexion à la base réussie ! ");
-                // Simplement : si on arrive jusqu'ici sans erreur, ça veut dire que Open() a réussi. On affiche donc 
-                // un message pour le confirmer visuellement — c'est exactement ce que tu as vu dans ton terminal.
+                Console.WriteLine("\n--- MENU LOGISTIQUE ---");
+                Console.WriteLine("1. Ajouter un produit");
+                Console.WriteLine("2. Créer une commande");
+                Console.WriteLine("3. Ajouter une ligne à une commande");
+                Console.WriteLine("4. Afficher tous les produits");
+                Console.WriteLine("5. Quitter");
+                Console.Write("Votre choix : ");
+
+                string choix = Console.ReadLine();
+
+                switch (choix)
+                {
+                    case "1":
+                        Console.Write("Nom du produit : ");
+                        string nom = Console.ReadLine();
+
+                        Console.Write("Prix du produit : ");
+                        double prix = double.Parse(Console.ReadLine());
+
+                        Console.Write("Quantité en stock : ");
+                        int quantite = int.Parse(Console.ReadLine());
+
+                        Produit nouveauProduit = new Produit
+                        {
+                            Nom = nom,
+                            Prix = prix,
+                            QuantiteEnStock = quantite
+                        };
+
+                        int idNouveauProduit = produitRepo.Inserer(nouveauProduit);
+                        Console.WriteLine($"Produit ajouté avec succès ! ID : {idNouveauProduit}");
+                        break;
+
+                    case "2":
+                        Commande nouvelleCommande = new Commande();
+                        int idNouvelleCommande = commandeRepo.Inserer(nouvelleCommande);
+                        Console.WriteLine($"Commande créée avec succès ! ID : {idNouvelleCommande}");
+                        break;
+
+                    case "3":
+                        Console.WriteLine("Produits disponibles :");
+                        produitRepo.Lister();
+
+                        Console.Write("ID du produit choisi : ");
+                        int idProduitChoisi = int.Parse(Console.ReadLine());
+
+                        Console.WriteLine("Commandes disponibles :");
+                        commandeRepo.Lister();
+
+                        Console.Write("ID de la commande choisie : ");
+                        int idCommandeChoisie = int.Parse(Console.ReadLine());
+
+                        Console.Write("Quantité commandée : ");
+                        int quantiteCommandee = int.Parse(Console.ReadLine());
+
+                        LigneCommande nouvelleLigne = new LigneCommande
+                        {
+                            QuantiteCommandee = quantiteCommandee
+                        };
+
+                        int idNouvelleLigne = ligneRepo.Inserer(nouvelleLigne, idProduitChoisi, idCommandeChoisie);
+                        Console.WriteLine($"Ligne de commande ajoutée avec succès ! ID : {idNouvelleLigne}");
+                        break;
+
+                    case "4":
+                        Console.WriteLine("Liste des produits : ");
+                        produitRepo.Lister();
+                        break;
+                    case "5":
+                        continuer = false;
+                        Console.WriteLine("Merci, à bientôt !");
+                        break;
+                    default:
+                        Console.WriteLine("Choix invalide, réessaie.");
+                        break;
+                }
             }
-
-            // test pour l'éxécution du programme
-            Produit produit1 = new Produit
-            {
-                Nom = "stylo",
-                Prix = 1.50,
-                QuantiteEnStock = 100
-            };
-
-            LigneCommande ligne1 = new LigneCommande
-            {
-                Produit = produit1,
-                QuantiteCommandee = 5
-            };
-
-            Commande commande1 = new Commande();
-            commande1.AjouterLigne(ligne1);
-
-            Console.WriteLine($"Nombre de lignes dans la commande : {commande1.LigneCommande.Count}");
-            Console.WriteLine($"Prix de la ligne 1 : {ligne1.prixLigneCommande()}");  
         }
-                  
     }
 }

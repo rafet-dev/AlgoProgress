@@ -1,4 +1,5 @@
 using Npgsql;
+using System.Collections.Generic;
 
 namespace Logistique
 {
@@ -24,6 +25,29 @@ namespace Logistique
                     return Convert.ToInt32(cmdSql.ExecuteScalar());
                 }
             }
+        }
+
+        public List<int> Lister()
+        {
+            var idsCommandes = new List<int>();
+
+            using (var connexion = new NpgsqlConnection(_connectionString))
+            {
+                connexion.Open();
+                string selectSql = "SELECT idcommande FROM commande ORDER BY idcommande";
+
+                using (var cmdSql = new NpgsqlCommand(selectSql, connexion))
+                using (var lecteur = cmdSql.ExecuteReader())
+                {
+                    while (lecteur.Read())
+                    {
+                        int id = lecteur.GetInt32(0);
+                        idsCommandes.Add(id);
+                        Console.WriteLine($"Commande n°{id}");
+                    }
+                }
+            }
+            return idsCommandes;
         }
     }
 }

@@ -1,0 +1,15 @@
+C:\Users\cda12zito\Projets\ReviseAlgo\AlgoProgress\Comptabilité\bin\Debug\net10.0\Comptabilité.exe
+C:\Users\cda12zito\Projets\ReviseAlgo\AlgoProgress\Comptabilité\bin\Debug\net10.0\Comptabilité.deps.json
+C:\Users\cda12zito\Projets\ReviseAlgo\AlgoProgress\Comptabilité\bin\Debug\net10.0\Comptabilité.runtimeconfig.json
+C:\Users\cda12zito\Projets\ReviseAlgo\AlgoProgress\Comptabilité\bin\Debug\net10.0\Comptabilité.dll
+C:\Users\cda12zito\Projets\ReviseAlgo\AlgoProgress\Comptabilité\bin\Debug\net10.0\Comptabilité.pdb
+C:\Users\cda12zito\Projets\ReviseAlgo\AlgoProgress\Comptabilité\obj\Debug\net10.0\Comptabilité.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\cda12zito\Projets\ReviseAlgo\AlgoProgress\Comptabilité\obj\Debug\net10.0\Comptabilité.AssemblyInfoInputs.cache
+C:\Users\cda12zito\Projets\ReviseAlgo\AlgoProgress\Comptabilité\obj\Debug\net10.0\Comptabilité.AssemblyInfo.cs
+C:\Users\cda12zito\Projets\ReviseAlgo\AlgoProgress\Comptabilité\obj\Debug\net10.0\Comptabilité.csproj.CoreCompileInputs.cache
+C:\Users\cda12zito\Projets\ReviseAlgo\AlgoProgress\Comptabilité\obj\Debug\net10.0\Comptabilité.sourcelink.json
+C:\Users\cda12zito\Projets\ReviseAlgo\AlgoProgress\Comptabilité\obj\Debug\net10.0\Comptabilité.dll
+C:\Users\cda12zito\Projets\ReviseAlgo\AlgoProgress\Comptabilité\obj\Debug\net10.0\refint\Comptabilité.dll
+C:\Users\cda12zito\Projets\ReviseAlgo\AlgoProgress\Comptabilité\obj\Debug\net10.0\Comptabilité.pdb
+C:\Users\cda12zito\Projets\ReviseAlgo\AlgoProgress\Comptabilité\obj\Debug\net10.0\Comptabilité.genruntimeconfig.cache
+C:\Users\cda12zito\Projets\ReviseAlgo\AlgoProgress\Comptabilité\obj\Debug\net10.0\ref\Comptabilité.dll
